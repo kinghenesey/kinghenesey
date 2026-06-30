@@ -9,8 +9,8 @@
 
 [![NEKOVA](https://img.shields.io/badge/NEKOVA-Language-blueviolet?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA)
 [![PyPI](https://img.shields.io/pypi/v/nekova-lang?style=for-the-badge&color=blue)](https://pypi.org/project/nekova-lang)
-[![Tests](https://img.shields.io/badge/Tests-1033%20passing-brightgreen?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA)
-[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA/blob/main/LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-1130%20passing-brightgreen?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA)
+[![License](https://img.shields.io/badge/License-BUSL--1.1-yellow?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA/blob/main/LICENSE)
 
 </div>
 
@@ -18,7 +18,7 @@
 
 ## Who I Am
 
-I'm **Emmanuel King Christopher**, a 21-year-old software developer from Nigeria and the creator of **NEKOVA** — an AI-native programming language I started building 8 months into learning to code.
+I'm **Emmanuel King Christopher**, a 21-year-old software developer from Nigeria and the creator of **NEKOVA** — an AI-native programming language I started building shortly after I started learning to code, in October 2025.
 
 I didn't build NEKOVA to learn. I built it because I watched people drop out of programming because the tools were too hard — and because no existing language treated AI as a first-class citizen. Every language made you import AI as a library. I made it a keyword.
 
@@ -32,15 +32,15 @@ NEKOVA is the world's first programming language where AI is **syntax**, not a l
 
 ```nekova
 # This is valid NEKOVA. No imports. No boilerplate. No setup.
-name = ask("What's your name? ")
-remember "user" = name
+let name = ask("What's your name? ")
+remember "user" as name
 
-result = think f"Write a short poem for {name}" as text
+let result = think "Write a short poem for {name}" as text
 speak result
 
 every 1 day:
-    mood = ask("How are you feeling today? ")
-    think f"Give {name} encouragement based on: {mood}" as text
+    let mood = ask("How are you feeling today? ")
+    think "Give {name} encouragement based on: {mood}" as text
 ```
 
 ### What makes NEKOVA different
@@ -51,7 +51,7 @@ every 1 day:
 | Text to speech | `import pyttsx3` + setup | `speak "Hello"` |
 | Scheduling | `import schedule` + boilerplate | `every 5 minutes:` |
 | Image generation | `import openai` + 15 lines | `imagine "a sunset"` |
-| Data validation | `import pydantic` + class | `shape User: name text` |
+| Data validation | `import pydantic` + class | `shape User: name str` |
 | Isolated execution | No native support | `sandbox strict:` |
 | Built-in testing | `import pytest` | `test "it works": expect ...` |
 
@@ -60,22 +60,18 @@ every 1 day:
 - **Complete pipeline** — Lexer → Parser (AST) → Interpreter, written from scratch
 - **AI-native keywords** — `think`, `speak`, `listen`, `imagine`, `shape`, `watch`, `every`
 - **Multi-provider AI** — Anthropic, OpenAI, Gemini — auto-detected, no configuration
-- **Built-in database** — `connect()`, `db.create()`, `db.query()` — SQLite native
-- **Web server** — `route`, `serve`, `fetch` as language keywords
+- **Built-in database** — SQLite native, accessible via the `database` stdlib module
+- **Web server** — `route`, `serve` as language keywords
 - **Class system** — inheritance, `self`, `init`, decorators, generators, typed tasks
 - **Custom error types** — `error NetworkError: message str, code int`
-- **Standard library in NEKOVA** — `math.nk`, `string.nk`, `date.nk`, `file.nk`
+- **Standard library written in NEKOVA** — `math.nk`, `string.nk`, `date.nk`, `file.nk`
 - **NEKOVA Sandbox** — isolated execution, resource limits, violation tracking, security API
-- **Static checker** — W001–W009 warnings with Rust-style caret error display
-- **Formatter** — `nekova fmt` auto-formats `.nk` files
-- **Package manager** — `nekova install`, `nekova publish`
-- **REPL** — `nekova repl` with history, autocomplete
-- **VS Code extension** — syntax highlighting, snippets, bracket matching
-- **Notebook** — browser-based NEKOVA notebook
-- **Web IDE** — in-browser editor and runner
-- **Debugger** — step-through debugging
-- **Python transpiler** — `nekova compile` outputs standalone Python
-- **1,033 tests** — across 19 test phases, all passing
+- **Self-hosting underway** — all blockers cleared in Phase 19b; the lexer is now being written in NEKOVA itself
+- **Formatter & checker** — `nekova fmt`, `nekova check`
+- **Package manager** — `nekova install`, `nekova search`
+- **REPL** — `nekova repl`
+- **VS Code extension** — published on the marketplace (syntax highlighting, snippets, bracket matching)
+- **1,130 tests** — across 19 development phases, all passing
 
 ### Install
 
@@ -84,26 +80,29 @@ pip install nekova-lang
 nekova run myapp.nk
 ```
 
+Licensed under **BUSL-1.1** — free for personal use, learning, and commercial products under $1M/year in revenue; converts to Apache 2.0 four years after each release.
+
 ---
 
 ## 🗺️ Roadmap
 
 | Phase | Status | What |
 |---|---|---|
-| 1–12 | ✅ Done | Core language, AI primitives, web, DB, REPL, tools |
-| 13–15 | ✅ Done | Closures, generators, stdlib, builtins, type system |
-| 16 | ✅ Done | `speak`, `listen`, `every`, `test`, `imagine`, `shape`, `watch` |
+| 1–14 | ✅ Done | Core language, AI primitives, web, classes, packages |
+| 15 | ✅ Done | Stability — `in`/`not in`, `//`, `range()`, slicing, builtins |
+| 16 | ✅ Done | `speak`, `listen`, `every`, `test`/`expect`, `imagine`, `shape`, `watch` |
 | 17 | ✅ Done | Decorators, typed tasks, custom error types |
 | 18 | ✅ Done | Standard library written in NEKOVA |
 | 19 | ✅ Done | NEKOVA Sandbox — isolated execution environment |
+| 19b | ✅ Done | 38 bugs fixed, self-hosting blockers cleared |
 | 20 | 🔄 Next | **Self-hosting begins** — NEKOVA lexer written in NEKOVA |
 | 21 | 📋 Planned | `prompt` blocks, `retry`/`fallback`, enforced types |
 | 22 | 📋 Planned | `observe` telemetry, `mock think` in tests, `\|>` pipe operator |
-| 23 | 📋 Planned | `when error:` inline fallback, destructuring, docstrings |
-| 24 | 📋 Planned | NEKOVA parser written in NEKOVA |
-| 25 | 📋 Planned | Agent as declarative value, unified schema system |
-| 26 | 📋 Planned | NEKOVA Sandbox commercial API, `nekova teach` CLI |
-| 27 | 🎯 Goal | Full self-hosting — NEKOVA interpreter written in NEKOVA |
+| 23 | 📋 Planned | Polish — inline errors, destructuring, docstrings |
+| 24 | 📋 Planned | NEKOVA parser written in NEKOVA — v2.0 milestone |
+| 27 | 🎯 Goal | Full self-hosting — NEKOVA interpreter written in NEKOVA — v3.0 |
+
+**Long term:** NEKOVA Game Engine, WASM compilation.
 
 ---
 
