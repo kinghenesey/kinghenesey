@@ -9,7 +9,7 @@
 
 [![NEKOVA](https://img.shields.io/badge/NEKOVA-Language-blueviolet?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA)
 [![PyPI](https://img.shields.io/pypi/v/nekova-lang?style=for-the-badge&color=blue)](https://pypi.org/project/nekova-lang)
-[![Tests](https://img.shields.io/badge/Tests-1130%20passing-brightgreen?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA)
+[![Tests](https://img.shields.io/badge/Tests-1203%20passing-brightgreen?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA)
 [![License](https://img.shields.io/badge/License-BUSL--1.1-yellow?style=for-the-badge)](https://github.com/kinghenesey/NEKOVA/blob/main/LICENSE)
 
 </div>
@@ -54,11 +54,15 @@ every 1 day:
 | Data validation | `import pydantic` + class | `shape User: name str` |
 | Isolated execution | No native support | `sandbox strict:` |
 | Built-in testing | `import pytest` | `test "it works": expect ...` |
+| AI/network retries | Manual try/except loops | `retry 3 times with exponential backoff:` |
+| Reusable prompts | String templates + f-strings | `prompt summarize(text, style="casual"):` |
 
 ### What's shipped
 
 - **Complete pipeline** — Lexer → Parser (AST) → Interpreter, written from scratch
 - **AI-native keywords** — `think`, `speak`, `listen`, `imagine`, `shape`, `watch`, `every`
+- **`prompt` blocks** — named, composable, typed prompt definitions, called via `think` (Phase 21)
+- **`retry` / `fallback`** — first-class resilience for AI and network calls, with configurable backoff (Phase 21)
 - **Multi-provider AI** — Anthropic, OpenAI, Gemini — auto-detected, no configuration
 - **Built-in database** — SQLite native, accessible via the `database` stdlib module
 - **Web server** — `route`, `serve` as language keywords
@@ -66,12 +70,12 @@ every 1 day:
 - **Custom error types** — `error NetworkError: message str, code int`
 - **Standard library written in NEKOVA** — `math.nk`, `string.nk`, `date.nk`, `file.nk`
 - **NEKOVA Sandbox** — isolated execution, resource limits, violation tracking, security API
-- **Self-hosting underway** — all blockers cleared in Phase 19b; the lexer is now being written in NEKOVA itself
+- **Self-hosting: lexer shipped** — the NEKOVA lexer is written in NEKOVA itself (`lexer.nk`), verified token-for-token identical to the Python reference lexer, including tokenizing its own 3,666-token source (Phase 20)
 - **Formatter & checker** — `nekova fmt`, `nekova check`
 - **Package manager** — `nekova install`, `nekova search`
 - **REPL** — `nekova repl`
-- **VS Code extension** — published on the marketplace (syntax highlighting, snippets, bracket matching)
-- **1,130 tests** — across 19 development phases, all passing
+- **VS Code extension** — published on the marketplace, with a branded "NEKOVA Dark" color theme (pepper-red and gold), a custom `.nk` file icon, syntax highlighting, and snippets
+- **1,203 tests** — across 22 development phases, all passing
 
 ### Install
 
@@ -95,9 +99,9 @@ Licensed under **BUSL-1.1** — free for personal use, learning, and commercial 
 | 18 | ✅ Done | Standard library written in NEKOVA |
 | 19 | ✅ Done | NEKOVA Sandbox — isolated execution environment |
 | 19b | ✅ Done | 38 bugs fixed, self-hosting blockers cleared |
-| 20 | 🔄 Next | **Self-hosting begins** — NEKOVA lexer written in NEKOVA |
-| 21 | 📋 Planned | `prompt` blocks, `retry`/`fallback`, enforced types |
-| 22 | 📋 Planned | `observe` telemetry, `mock think` in tests, `\|>` pipe operator |
+| 20 | ✅ Done | **Self-hosting begins** — NEKOVA lexer written in NEKOVA, verified against the Python reference |
+| 21 | ✅ Done | `prompt` blocks, `retry`/`fallback` |
+| 22 | 🔄 Next | `observe` telemetry, `mock think` in tests, `\|>` pipe operator, enforced types |
 | 23 | 📋 Planned | Polish — inline errors, destructuring, docstrings |
 | 24 | 📋 Planned | NEKOVA parser written in NEKOVA — v2.0 milestone |
 | 27 | 🎯 Goal | Full self-hosting — NEKOVA interpreter written in NEKOVA — v3.0 |
